@@ -19,8 +19,17 @@ with cuda-11.2, everything is ok
 
 with cuda-11.3 or newer:
 
-CopyKernel0 works normally, has a 64-bit load and a 64-bit store, but in CopyKernel1 the float2 64-bit store was split to two 32-bit store, which caused a Uncoalesced global access warning in nsight-compute. the only difference between CopyKernel0 and CopyKernel1 is the `int row = blockIdx.x` or `int64_t row = blockIdx.x`
+CopyKernel0 works normally, has a 64-bit load and a 64-bit store, but in CopyKernel1 the float2 64-bit store was split to two 32-bit store, which caused a Uncoalesced global access warning in nsight-compute. the only difference between CopyKernel0 and CopyKernel1 is the forloop `int row = blockIdx.x` or `int64_t row = blockIdx.x`
 
+
+
+the CopyKernel0:
+
+![image-20211203104609571](img/image-20211203104609571.png)
+
+the CopyKernel1:
+
+![image-20211203104443613](img/image-20211203104443613.png)
 
 
 
